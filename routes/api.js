@@ -1,14 +1,42 @@
+var vcard = [];
 
-
-var calledTime = 0;
-exports.time = function(reg,res){
-	calledTime += 1;
-	var obj = {
-		"server":"Tomato's Server",
-		"time":new Date().toISOString(),
-		"count":calledTime
-
+exports.create = function(reg,res) {
+	var person = { 
+		nickname: "",
+		name: "",
+		tel: ""
 	};
 
-	res.send(obj);
+ person.nickname = reg.params.name;
+
+ person.tel = req.query.tel;
+ person.name = req.query.name;
+
+vcard.push(person);
+
+	res.end();
+};
+                             
+exports.read = function(req,res) {
+	res.send(vcard);
+	res.end();
+};
+
+exports.update = function(reg,res) {
+	var nickname = reg.params.name;
+
+	vcard.forEach(function (entry) {
+		if (entry.nikname === nickname) {
+			console.log('found!');
+
+			entry.name = req.query.name;
+			ent.tel = req.query.tel;
+		}
+	});
+
+	res.end();
+};
+
+exports.delete = function(req,res) {
+	res.end();
 };
